@@ -1,16 +1,19 @@
-class LinkedList<T> : Iterable<T> {
+class LinkedList<T> : Collection<T> {
+
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-    var size = 0
+
+    override var size = 0
         private set
-//todo: the methods defined so far, change the original list (have side effects). They should just edit a copy of the list and then return it.
+    //todo: the methods defined so far, change the original list (have side effects).
+    // They should just edit a copy of the list and then return it.
 
 
     override fun iterator(): Iterator<T> {
         return LinkListIterator(this)
     }
 
-    fun isEmpty(): Boolean {
+    override fun isEmpty(): Boolean {
         return size == 0
     }
 
@@ -114,13 +117,28 @@ class LinkedList<T> : Iterable<T> {
         return result
     }
 
+    override fun contains(element: T): Boolean {
+        for (item in this) {
+            if (item == element) return true
+        }
+        return false
+    }
+
+    override fun containsAll(elements: Collection<T>): Boolean {
+        //this method isn't efficient; it's O(n^2)
+        for (itemFromCollection in elements) {
+            if (!this.contains(itemFromCollection)) return false
+        }
+        return true
+    }
+
 
 }
 
 /**
  * you just feed the LinkedList to the constructor of this class, and you will have an iterator that helps you work with the LinkedList.
  */
-class LinkListIterator<T>(
+private class LinkListIterator<T>(
     private val list: LinkedList<T>
 ) : Iterator<T> {
     private var currentIndex = 0
