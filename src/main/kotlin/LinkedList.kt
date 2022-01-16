@@ -1,9 +1,14 @@
-class LinkedList<T> {
+class LinkedList<T> : Iterable<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-    private var size = 0
+    var size = 0
+        private set
 //todo: the methods defined so far, change the original list (have side effects). They should just edit a copy of the list and then return it.
 
+
+    override fun iterator(): Iterator<T> {
+        return LinkListIterator(this)
+    }
 
     fun isEmpty(): Boolean {
         return size == 0
@@ -110,4 +115,31 @@ class LinkedList<T> {
     }
 
 
+}
+
+/**
+ * you just feed the LinkedList to the constructor of this class, and you will have an iterator that helps you work with the LinkedList.
+ */
+class LinkListIterator<T>(
+    private val list: LinkedList<T>
+) : Iterator<T> {
+    private var currentIndex = 0
+    private var currentNode: Node<T>? = null
+
+    override fun hasNext(): Boolean {
+        return currentIndex < list.size
+    }
+
+    /**
+     * the name of this method is misleading; even though it's named "next", you're supposed to return the value of
+     * element at the currentIndex and then increment the currentIndex.
+     */
+    override fun next(): T {
+        if (!this.hasNext()) throw IndexOutOfBoundsException()
+
+        currentNode = list.nodeAt(currentIndex)
+        currentIndex++
+        return currentNode!!.value
+
+    }
 }
