@@ -1,3 +1,5 @@
+package linkedlist
+
 class LinkedList<T> : Collection<T> {
 
     private var head: Node<T>? = null
@@ -19,7 +21,7 @@ class LinkedList<T> : Collection<T> {
 
     override fun toString(): String {
         if (isEmpty()) {
-            return "Empty LinkedList"
+            return "Empty linkedlist.LinkedList"
         } else {
             return head.toString()
         }
@@ -136,8 +138,8 @@ class LinkedList<T> : Collection<T> {
 }
 
 /**
- * you just feed the LinkedList to the constructor of this class,
- * and you will have an iterator that helps you work with the LinkedList.
+ * you just feed the linkedlist.LinkedList to the constructor of this class,
+ * and you will have an iterator that helps you work with the linkedlist.LinkedList.
  */
 private class LinkListIterator<T>(
     private val list: LinkedList<T>
