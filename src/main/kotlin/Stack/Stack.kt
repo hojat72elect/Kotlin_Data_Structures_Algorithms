@@ -12,14 +12,27 @@ package Stack
 interface PushPop<Element> {
     fun push(element: Element)
     fun pop(): Element?
+    fun peek(): Element?
+
+    val count: Int
+        get
+
+    // This parameter is defined inside an interface but it already has its own implementation;
+    // so, the IDE doesn't force the Stack class to implement it.
+    val isEmpty: Boolean
+        get() = count == 0
 }
 
 class Stack<T : Any>() : PushPop<T> {
     private val storage = arrayListOf<T>()
+
+    override val count: Int
+        get() = storage.size
+
     override fun toString() = buildString {
         appendLine("----top----")
         storage.asReversed().forEach {
-            appendln("$it")
+            appendLine("$it")
         }
         appendLine("-----------")
     }
@@ -29,9 +42,13 @@ class Stack<T : Any>() : PushPop<T> {
     }
 
     override fun pop(): T? {
-        if (storage.size == 0) {
+        if (isEmpty) {
             return null
         }
-        return storage.removeAt(storage.size - 1)
+        return storage.removeAt(count - 1)
+    }
+
+    override fun peek(): T? {
+        return storage.lastOrNull() // Returns the last element of the ArrayList but the main ArrayList won't be changed.
     }
 }
