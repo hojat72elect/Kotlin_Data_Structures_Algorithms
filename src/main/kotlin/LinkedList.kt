@@ -26,7 +26,7 @@ class LinkedList<T> : Collection<T> {
     }
 
     fun push(value: T): LinkedList<T> {
-        head = Node(value = value, next = head)
+        head = Node(value, head)
         if (tail == null) {
             tail = head
         }
@@ -136,11 +136,12 @@ class LinkedList<T> : Collection<T> {
 }
 
 /**
- * you just feed the LinkedList to the constructor of this class, and you will have an iterator that helps you work with the LinkedList.
+ * you just feed the LinkedList to the constructor of this class,
+ * and you will have an iterator that helps you work with the LinkedList.
  */
 private class LinkListIterator<T>(
     private val list: LinkedList<T>
-) : Iterator<T> {
+) : MutableIterator<T> {
     private var currentIndex = 0
     private var currentNode: Node<T>? = null
 
@@ -159,5 +160,9 @@ private class LinkListIterator<T>(
         currentIndex++
         return currentNode!!.value
 
+    }
+
+    override fun remove() {
+        TODO("Not yet implemented")
     }
 }
