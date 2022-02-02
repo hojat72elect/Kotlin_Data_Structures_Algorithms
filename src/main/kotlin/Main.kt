@@ -1,18 +1,29 @@
-import Stack.Stack
+import stack.Stack
+import stack.stackOf
 
 fun main() {
+    val myStack = Stack<Int>()
+    println("my empty stack is like this:\n$myStack")
 
-    val myStack = Stack<Int>().apply {
-        push(1)
-        push(2)
-        push(3)
+    myStack.apply {
         push(4)
-        push(5)
+        push(3)
+        push(1)
+
     }
-    println(myStack)
-    val poppedElement = myStack.pop()
-    if (poppedElement != null) {
-        println("popped: $poppedElement")
-    }
-    println(myStack)
+    println("my pushed stack is:\n$myStack")
+
+    println("we poped '${myStack.pop()}' from the stack and now it is:\n$myStack")
+
+    println("let's have a peek at the top:${myStack.peek()}\nbut the stack still is:\n$myStack")
+
+    println("\n------------------------------\nSecond Example:")
+    val mySecondStack = Stack.create(arrayListOf("a", "b", "c", "d"))
+    println("my second stack out of an iterable is:\n$mySecondStack")
+    println("popped:${mySecondStack.pop()}")
+
+    println("\n------------------------------\nThird Example:")
+    val myThirdStack = stackOf(4, 8, 3, 5)
+    println("my third stack: \n$myThirdStack")
+
 }

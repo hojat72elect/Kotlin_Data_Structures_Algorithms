@@ -1,4 +1,4 @@
-package Stack
+package stack
 
 /**
  * Created by Hojat Ghasemi on 2022-02-01.
@@ -9,22 +9,18 @@ package Stack
  * Remember that this class is only for educational purposes and isn't suitable for production purposes by any means (mostly because it's using an "ArrayList" to implement a "Stack"). For any professional purposes, only use "java.lang.Stack".
  */
 
-interface PushPop<Element> {
-    fun push(element: Element)
-    fun pop(): Element?
-    fun peek(): Element?
+class Stack<Element : Any> : Stackable<Element> {
+    private val storage = arrayListOf<Element>()
 
-    val count: Int
-        get
-
-    // This parameter is defined inside an interface but it already has its own implementation;
-    // so, the IDE doesn't force the Stack class to implement it.
-    val isEmpty: Boolean
-        get() = count == 0
-}
-
-class Stack<T : Any>() : PushPop<T> {
-    private val storage = arrayListOf<T>()
+    companion object {
+        fun <Element : Any> create(items: Iterable<Element>): Stack<Element> {
+            val tempStack = Stack<Element>()
+            for (item in items) {
+                tempStack.push(item)
+            }
+            return tempStack
+        }
+    }
 
     override val count: Int
         get() = storage.size
@@ -32,23 +28,31 @@ class Stack<T : Any>() : PushPop<T> {
     override fun toString() = buildString {
         appendLine("----top----")
         storage.asReversed().forEach {
-            appendLine("$it")
+            appendLine("    $it    ")
         }
-        appendLine("-----------")
+        appendLine("---bottom--")
     }
 
-    override fun push(element: T) {
+    override fun push(element: Element) {
         storage.add(element)
     }
 
-    override fun pop(): T? {
+    override fun pop(): Element? {
         if (isEmpty) {
             return null
         }
         return storage.removeAt(count - 1)
     }
 
-    override fun peek(): T? {
+    override fun peek(): Element? {
         return storage.lastOrNull() // Returns the last element of the ArrayList but the main ArrayList won't be changed.
     }
+}
+
+/**
+ * This is a first-class function which is not part of Stack class but we just put in here for packaging reasons.
+ * This function is now callable from everywhere in our project.
+ */
+fun <Element : Any> stackOf(vararg elements: Element): Stack<Element> {
+    return Stack.create(elements.asList())
 }
