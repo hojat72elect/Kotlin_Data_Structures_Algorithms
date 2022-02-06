@@ -1,16 +1,15 @@
-import queue.ArrayListQueue
+import tree.TreeNode
 
 fun main() {
 
-    val peopleInQueue = ArrayListQueue<String>()
-    peopleInQueue.enqueue("Hojat")
-    peopleInQueue.enqueue("Hesam")
-    peopleInQueue.enqueue("Hamed")
-    peopleInQueue.enqueue("Jila")
-    peopleInQueue.enqueue("Mansour")
+    val hot = TreeNode("Hot")
+    val cold = TreeNode("Cold")
 
-    println("current people in queue:\n$peopleInQueue")
-    println("first in queue: ${peopleInQueue.dequeue()}")
-    println("next up is:${peopleInQueue.peek()}")
+    val beverages = TreeNode("Beverages").run {
+        add(hot)
+        add(cold)
+    }
+    println(beverages)
+    //it's because those add methods return boolean(it can be a possible issue with our current implementation).
 
 }
