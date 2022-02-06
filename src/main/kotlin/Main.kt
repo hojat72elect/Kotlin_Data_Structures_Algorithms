@@ -1,15 +1,37 @@
 import tree.TreeNode
 
 fun main() {
-
-    val hot = TreeNode("Hot")
-    val cold = TreeNode("Cold")
-
-    val beverages = TreeNode("Beverages").run {
-        add(hot)
-        add(cold)
+    val myTree = makeBeverageTree()
+    myTree.forEachDepthFirst {
+        println(it.value) // This is the lambda we defined as Visitor<T>
     }
-    println(beverages)
-    //it's because those add methods return boolean(it can be a possible issue with our current implementation).
+}
 
+fun makeBeverageTree(): TreeNode<String> {
+    val tree = TreeNode("Beverages")
+    val hot = TreeNode("hot")
+    val cold = TreeNode("cold")
+    val tea = TreeNode("tea")
+    val coffee = TreeNode("coffee")
+    val chocolate = TreeNode("cocoa")
+    val blackTea = TreeNode("black")
+    val greenTea = TreeNode("green")
+    val chaiTea = TreeNode("chai")
+    val soda = TreeNode("soda")
+    val milk = TreeNode("milk")
+    val gingerAle = TreeNode("ginger ale")
+    val bitterLemon = TreeNode("bitter lemon")
+    tree.add(hot)
+    tree.add(cold)
+    hot.add(tea)
+    hot.add(coffee)
+    hot.add(chocolate)
+    cold.add(soda)
+    cold.add(milk)
+    tea.add(blackTea)
+    tea.add(greenTea)
+    tea.add(chaiTea)
+    soda.add(gingerAle)
+    soda.add(bitterLemon)
+    return tree
 }

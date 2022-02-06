@@ -16,4 +16,13 @@ class TreeNode<T>(val value: T) {
      */
     fun add(child: TreeNode<T>) = children.add(child)
 
+    fun forEachDepthFirst(visit: Visitor<T>) {
+        visit(this)
+        children.forEach {
+            it.forEachDepthFirst(visit)
+        }
+    }
+
 }
+// Any kind of operation you want to apply to each node of a tree.
+typealias Visitor<T> = (TreeNode<T>) -> Unit
