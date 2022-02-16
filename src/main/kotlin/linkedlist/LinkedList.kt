@@ -1,15 +1,12 @@
 package linkedlist
 
 class LinkedList<T> : Collection<T> {
-
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-
     override var size = 0
         private set
     //todo: the methods defined so far, change the original list (have side effects).
     // They should just edit a copy of the list and then return it.
-
 
     override fun iterator(): Iterator<T> {
         return LinkListIterator(this)
@@ -20,13 +17,14 @@ class LinkedList<T> : Collection<T> {
     }
 
     override fun toString(): String {
-        if (isEmpty()) {
-            return "Empty linkedlist.LinkedList"
+        return if (isEmpty()) {
+            "Empty LinkedList"
         } else {
-            return head.toString()
+            head.toString()
         }
     }
 
+    // Adding an element in front of the LinkedList.
     fun push(value: T): LinkedList<T> {
         head = Node(value, head)
         if (tail == null) {
@@ -36,18 +34,23 @@ class LinkedList<T> : Collection<T> {
         return this
     }
 
+    // Adding an element at the end of the LinkedList.
     fun append(value: T): LinkedList<T> {
         if (isEmpty()) {
             push(value)
         } else {
-            tail?.next = Node(value, null)
+            tail!!.next = Node(value, null)
             tail = tail?.next
             size++
         }
         return this
     }
 
+    // In order to use "insert()" more easily, you need to
+    // first have a reference to a node by using nodeAt().
     fun nodeAt(index: Int): Node<T>? {
+        // The nature of LinkedList is that in order to
+        // get to a specific node, you need to traverse through it.
         var currentNode = head
         var currentIndex = 0
         while (currentIndex < index && currentNode != null) {
@@ -57,6 +60,7 @@ class LinkedList<T> : Collection<T> {
         return currentNode
     }
 
+    // Inserting an element after a specific node of the LinkedList.
     fun insert(value: T, afterNode: Node<T>) {
         //todo: it has side effects.
         if (afterNode == tail) {
@@ -67,7 +71,6 @@ class LinkedList<T> : Collection<T> {
             size++
         }
     }
-
 
     fun pop(): T? {
         //returns the value that was removed from front of the list.
@@ -133,8 +136,6 @@ class LinkedList<T> : Collection<T> {
         }
         return true
     }
-
-
 }
 
 /**

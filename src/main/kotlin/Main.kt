@@ -1,37 +1,14 @@
-import tree.TreeNode
+import linkedlist.LinkedList
+import linkedlist.Node
 
 fun main() {
-    val myTree = makeBeverageTree()
-    myTree.forEachDepthFirst {
-        println(it.value) // This is the lambda we defined as Visitor<T>
-    }
-}
-
-fun makeBeverageTree(): TreeNode<String> {
-    val tree = TreeNode("Beverages")
-    val hot = TreeNode("hot")
-    val cold = TreeNode("cold")
-    val tea = TreeNode("tea")
-    val coffee = TreeNode("coffee")
-    val chocolate = TreeNode("cocoa")
-    val blackTea = TreeNode("black")
-    val greenTea = TreeNode("green")
-    val chaiTea = TreeNode("chai")
-    val soda = TreeNode("soda")
-    val milk = TreeNode("milk")
-    val gingerAle = TreeNode("ginger ale")
-    val bitterLemon = TreeNode("bitter lemon")
-    tree.add(hot)
-    tree.add(cold)
-    hot.add(tea)
-    hot.add(coffee)
-    hot.add(chocolate)
-    cold.add(soda)
-    cold.add(milk)
-    tea.add(blackTea)
-    tea.add(greenTea)
-    tea.add(chaiTea)
-    soda.add(gingerAle)
-    soda.add(bitterLemon)
-    return tree
+    val cities = LinkedList<String>()
+    cities.push("Ottawa")
+        .push("Toronto")
+        .append("Vancouver")
+        .push("Montreal")
+        .append("Montreal")
+    println(cities)
+    cities.insert("Calgary", Node("Montreal", null))
+    println(cities)
 }
