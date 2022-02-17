@@ -1,5 +1,4 @@
 import linkedlist.LinkedList
-import linkedlist.Node
 
 fun main() {
     val cities = LinkedList<String>()
@@ -7,8 +6,9 @@ fun main() {
         .push("Toronto")
         .append("Vancouver")
         .push("Montreal")
-        .append("Montreal")
+        .append("Sudbury")
+    cities.nodeAt(1)?.let { cities.insert("Calgary", it) }
     println(cities)
-    cities.insert("Calgary", Node("Montreal", null))
-    println(cities)
+
+
 }

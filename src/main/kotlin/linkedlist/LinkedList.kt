@@ -61,15 +61,16 @@ class LinkedList<T> : Collection<T> {
     }
 
     // Inserting an element after a specific node of the LinkedList.
-    fun insert(value: T, afterNode: Node<T>) {
+    fun insert(value: T, afterNode: Node<T>): LinkedList<T> {
         //todo: it has side effects.
         if (afterNode == tail) {
             this.append(value)
         } else {
             val newNode = Node(value, afterNode.next)
             afterNode.next = newNode
-            size++
         }
+        size++
+        return this
     }
 
     fun pop(): T? {
