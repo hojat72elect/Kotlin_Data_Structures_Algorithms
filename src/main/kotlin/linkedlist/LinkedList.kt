@@ -1,14 +1,17 @@
 package linkedlist
 
-class LinkedList<T> : Collection<T> {
+class LinkedList<T> :  MutableCollection<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
+
     override var size = 0
         private set
-    //todo: the methods defined so far, change the original list (have side effects).
+    // todo: the methods defined so far, change the original list (have side effects).
     // They should just edit a copy of the list and then return it.
 
-    override fun iterator(): Iterator<T> {
+    // This function is from Iterable<T> interface
+    override fun iterator(): MutableIterator<T> {
+        // you need to define a private class of your own that implements Iterator<T>
         return LinkListIterator(this)
     }
 
@@ -22,6 +25,21 @@ class LinkedList<T> : Collection<T> {
         } else {
             head.toString()
         }
+    }
+
+    override fun contains(element: T): Boolean {
+        for (item in this) {
+            return (item == element)
+        }
+        return false
+    }
+
+    override fun containsAll(elements: Collection<T>): Boolean {
+        //this method isn't efficient; it's O(n^2)
+        for (itemFromCollection in elements) {
+            if (!this.contains(itemFromCollection)) return false
+        }
+        return true
     }
 
     // Adding an element in front of the LinkedList.
@@ -126,20 +144,30 @@ class LinkedList<T> : Collection<T> {
         return result
     }
 
-    override fun contains(element: T): Boolean {
-        for (item in this) {
-            if (item == element) return true
-        }
-        return false
+    override fun add(element: T): Boolean {
+        TODO("Not yet implemented")
     }
 
-    override fun containsAll(elements: Collection<T>): Boolean {
-        //this method isn't efficient; it's O(n^2)
-        for (itemFromCollection in elements) {
-            if (!this.contains(itemFromCollection)) return false
-        }
-        return true
+    override fun addAll(elements: Collection<T>): Boolean {
+        TODO("Not yet implemented")
     }
+
+    override fun clear() {
+        TODO("Not yet implemented")
+    }
+
+    override fun remove(element: T): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun removeAll(elements: Collection<T>): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun retainAll(elements: Collection<T>): Boolean {
+        TODO("Not yet implemented")
+    }
+
 }
 
 /**
@@ -152,6 +180,7 @@ private class LinkListIterator<T>(
     private var currentIndex = 0
     private var currentNode: Node<T>? = null
 
+    // This function is from Iterator<T> interface
     override fun hasNext(): Boolean {
         return currentIndex < list.size
     }
@@ -159,6 +188,8 @@ private class LinkListIterator<T>(
     /**
      * the name of this method is misleading; even though it's named "next", you're supposed to return the value of
      * element at the currentIndex and then increment the currentIndex.
+     *
+     * This function is from Iterator<T> interface
      */
     override fun next(): T {
         if (!this.hasNext()) throw IndexOutOfBoundsException()
@@ -166,10 +197,18 @@ private class LinkListIterator<T>(
         currentNode = list.nodeAt(currentIndex)
         currentIndex++
         return currentNode!!.value
-
     }
 
     override fun remove() {
-        TODO("Not yet implemented")
+        if (currentIndex == 0) {
+            // we're at the start of the LinkedList, just pop it.
+            list.pop()
+        } else {
+            // get a reference to the previous node
+            val prevNode = list.nodeAt(currentIndex - 1) ?: return
+            list.removeAfter(prevNode) // This method will take care of everything for us.
+            currentNode = prevNode
+            currentIndex--
+        }
     }
 }
