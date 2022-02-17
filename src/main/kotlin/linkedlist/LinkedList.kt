@@ -73,8 +73,8 @@ class LinkedList<T> : Collection<T> {
         return this
     }
 
+    //returns the value that was removed from front of the list.
     fun pop(): T? {
-        //returns the value that was removed from front of the list.
         //todo: side effects.
         if (!isEmpty()) {
             size--
@@ -87,26 +87,29 @@ class LinkedList<T> : Collection<T> {
         return result
     }
 
+    // Removes the tail of the list. This one is a bit hard
+    // because we need to get a reference to the node before tail.
     fun removeLast(): T? {
-        //removes the value that was at the end of the list.
         //todo: it has side-effects.
         val head = head ?: return null
         if (head.next == null) {
-            return pop()
+            return this.pop()// pop() will handle everything on its own (even updating the size)
         }
         size--
-        var prev = head
-        var current = head
 
-        var next = current.next
-        while (next != null) {
-            prev = current
-            current = next
-            next = current.next
+        var previousNode = head
+        var currentNode = head
+        var nextNode = currentNode.next
+
+        while (nextNode != null) {
+            previousNode = currentNode
+            currentNode = nextNode
+            nextNode = nextNode.next
         }
-        prev.next = null
-        tail = prev
-        return current.value
+
+        tail = previousNode
+        previousNode.next = null
+        return currentNode.value
 
     }
 
