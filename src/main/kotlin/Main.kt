@@ -1,13 +1,11 @@
 import linkedlist.LinkedList
-import linkedlist.Node
 
 fun main() {
-    val cities = LinkedList<String>()
-    cities.push("Ottawa")
-        .push("Toronto")
-        .append("Vancouver")
-        .push("Montreal")
-        .append("Sudbury")
-    cities.nodeAt(1)?.let { cities.insert("Calgary", it) }
-    println(cities)
+    val list: MutableCollection<Int> = LinkedList()
+    list.add(3)
+    list.add(2)
+    list.add(1)
+    println(list)
+    list.remove(1)
+    println(list)
 }

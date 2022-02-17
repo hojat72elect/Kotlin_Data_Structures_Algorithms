@@ -1,6 +1,6 @@
 package linkedlist
 
-class LinkedList<T> :  MutableCollection<T> {
+class LinkedList<T> : MutableCollection<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
 
@@ -144,30 +144,55 @@ class LinkedList<T> :  MutableCollection<T> {
         return result
     }
 
+    // Adds an element in front of LinkedList; always returns true, unless there was a problem in performing the append.
     override fun add(element: T): Boolean {
-        TODO("Not yet implemented")
+        this.append(element)
+        return true
     }
 
     override fun addAll(elements: Collection<T>): Boolean {
-        TODO("Not yet implemented")
+        for (element in elements) {
+            this.append(element)
+        }
+        return true
     }
 
     override fun clear() {
-        TODO("Not yet implemented")
+        this.head = null
+        this.tail = null
+        this.size = 0
     }
 
     override fun remove(element: T): Boolean {
-        TODO("Not yet implemented")
+        while (iterator().hasNext()) {
+            if (iterator().next() == element) {
+                iterator().remove()
+                return true
+            }
+        }
+        return false
     }
 
     override fun removeAll(elements: Collection<T>): Boolean {
-        TODO("Not yet implemented")
+        var result = true
+        for (element in elements) {
+            result = this.remove(element) && result
+        }
+        return result // The result will be true if all elements were removed (otherwise false)
     }
 
+    // Other than elements mentioned in this function, remove
+    // all the other elements in the LinkedList
     override fun retainAll(elements: Collection<T>): Boolean {
-        TODO("Not yet implemented")
+        var result = false
+        while (this.iterator().hasNext()) {
+            if (!elements.contains(this.iterator().next())) {
+                iterator().remove()
+                result = true
+            }
+        }
+        return result
     }
-
 }
 
 /**
@@ -192,7 +217,7 @@ private class LinkListIterator<T>(
      * This function is from Iterator<T> interface
      */
     override fun next(): T {
-        if (!this.hasNext()) throw IndexOutOfBoundsException()
+        if (!hasNext()) throw IndexOutOfBoundsException()
 
         currentNode = list.nodeAt(currentIndex)
         currentIndex++
