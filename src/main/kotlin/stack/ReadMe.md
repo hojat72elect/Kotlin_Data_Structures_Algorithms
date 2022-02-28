@@ -1,1 +1,0 @@
-Looks like having an interface that defines a generic type parameter causes weird consequences in kotlin. I need to look into it in future. For now, I just do what this book does; but unfortunately, this part of book is full of bugs.
