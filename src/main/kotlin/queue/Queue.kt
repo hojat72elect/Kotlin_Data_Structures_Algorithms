@@ -4,30 +4,36 @@ package queue
  * Created by Hojat Ghasemi on 2022-02-02.
  *The author could be contacted at "https://twitter.com/hojat_93"
  *
- * for production purposes, use "java.util.Queue" instead. This one is just for education.
+ * my implementation for a Queue, it's implemented via an "ArrayList" and not suitable for production.
+ * Only read it for educational purposes.
+ *
+ * One of the best classes you can use for implementing Queues in production is "java.util.concurrent.ArrayBlockingQueue".
  */
-interface Queue<T> {
+class Queue<T> {
+    // Thanks to this ArrayList, the queue implemented in here
+    // will have variable size.
+    private val list = arrayListOf<T>()
+
+    val size: Int
+        get() = list.size
+
+    // Shows you the first element of the queue.
+    fun peek(): T? = list.getOrNull(0)
+
+    fun enqueue(element: T): Queue<T> {
+        list.add(element)
+        return this
+    }
+
+    fun isEmpty(): Boolean {
+        return size == 0
+    }
+
+    fun dequeue(): T? =
+        if (isEmpty()) null else list.removeAt(0)
 
     /**
-     * inserts an element at the back of the Queue.
+     * For debugging purposes, we needed to override the toString() method of this class.
      */
-    fun enqueue(element: T): Boolean
-
-    /**
-     * removes and returns the element at the front of the Queue.
-     */
-    fun dequeue(): T?
-
-    /**
-     * returns the front element of the Queue without removing it.
-     */
-    fun peek(): T?
-
-    val count: Int
-        get
-
-    //the getter for this property is already implemented.
-    val isEmpty: Boolean
-        get() = count == 0
-
+    override fun toString(): String = list.toString()
 }

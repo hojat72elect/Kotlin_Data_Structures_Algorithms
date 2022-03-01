@@ -1,27 +1,26 @@
-import _stack.HojatStack
+import queue.Queue
 
 fun main() {
-    val myFaveCities = HojatStack<String>()
 
-    println(myFaveCities)
-    println("Since the stack is empty, the size is: ${myFaveCities.size}")
+    val myQueue = Queue<Int>()
+    println(myQueue)
+    println("Is it empty? ${myQueue.isEmpty()}\n")
+    myQueue.enqueue(5)
+        .enqueue(12)
+        .enqueue(27)
+    println(myQueue)
 
-    myFaveCities
-        .push("Toronto")
-        .push("New York")
-        .push("Sao Paolo")
-        .push("Lisbon")
+    println("The first element in queue: ${myQueue.peek()}\n")
+    myQueue.dequeue()
+    println("Now the queue is like this: $myQueue")
+    println("current size: ${myQueue.size}")
 
-    println(myFaveCities)
-    println("and the size of the stack above is: ${myFaveCities.size}")
-    println("The first city that pops out is: ${myFaveCities.pop()}")
-    println("After popping, the size has become: ${myFaveCities.size}")
+    myQueue.enqueue(56)
+    println("56 went to the queue: $myQueue")
+    println(myQueue.dequeue())
+    println(myQueue.dequeue())
+    println(myQueue.dequeue())
+    println(myQueue.dequeue())
+    println(myQueue.dequeue())
 
-    println("let's peek into next element: ${myFaveCities.peek()}")
-    println(myFaveCities.pop())
-    println(myFaveCities.pop())
-    println(myFaveCities.pop())
-    println(myFaveCities.pop())
-    println(myFaveCities.pop())
-    println("ok, is it empty now? ${myFaveCities.isEmpty}")
 }
