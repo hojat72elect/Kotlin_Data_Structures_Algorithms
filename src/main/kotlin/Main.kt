@@ -1,26 +1,14 @@
-import queue.Queue
+import tree.TreeNode
 
 fun main() {
+    val people = TreeNode("people")
+        .add(TreeNode("Lud").add(TreeNode("21")))
+        .add(TreeNode("Esther"))
+    println(people)
+    people.forEachDepthFirst { println(it.value) }
+    people.forEachWidthFirst { println(it.value) }
 
-    val myQueue = Queue<Int>()
-    println(myQueue)
-    println("Is it empty? ${myQueue.isEmpty()}\n")
-    myQueue.enqueue(5)
-        .enqueue(12)
-        .enqueue(27)
-    println(myQueue)
-
-    println("The first element in queue: ${myQueue.peek()}\n")
-    myQueue.dequeue()
-    println("Now the queue is like this: $myQueue")
-    println("current size: ${myQueue.size}")
-
-    myQueue.enqueue(56)
-    println("56 went to the queue: $myQueue")
-    println(myQueue.dequeue())
-    println(myQueue.dequeue())
-    println(myQueue.dequeue())
-    println(myQueue.dequeue())
-    println(myQueue.dequeue())
+    println("the tree containing Lud\'s age: ${people.searchDepthFirst("21")?.value}")
+    println("the tree containing Esther\'s age: ${people.searchWidthFirst("esther_age")?.value}")
 
 }
