@@ -15,4 +15,5 @@ fun main() {
     nine.leftChild = eight
 
     val tree = seven
+    println(tree)
 }
