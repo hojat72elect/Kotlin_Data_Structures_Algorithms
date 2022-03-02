@@ -1,14 +1,18 @@
-import tree.TreeNode
+import tree.BinaryTreeNode
 
 fun main() {
-    val people = TreeNode("people")
-        .add(TreeNode("Lud").add(TreeNode("21")))
-        .add(TreeNode("Esther"))
-    println(people)
-    people.forEachDepthFirst { println(it.value) }
-    people.forEachWidthFirst { println(it.value) }
+    val zero = BinaryTreeNode(0)
+    val one = BinaryTreeNode(1)
+    val five = BinaryTreeNode(5)
+    val seven = BinaryTreeNode(7)
+    val eight = BinaryTreeNode(8)
+    val nine = BinaryTreeNode(9)
 
-    println("the tree containing Lud\'s age: ${people.searchDepthFirst("21")?.value}")
-    println("the tree containing Esther\'s age: ${people.searchWidthFirst("esther_age")?.value}")
+    seven.leftChild = one
+    one.leftChild = zero
+    one.rightChild = five
+    seven.rightChild = nine
+    nine.leftChild = eight
 
+    val tree = seven
 }
