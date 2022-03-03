@@ -31,5 +31,32 @@ class BinaryTreeNode<T>(val value: T) {
         } ?: "${root}null\n"
     }
 
+    /**
+     * In-order traversal first visits the left children (in a recursive fashion) and then visits the tree node itself and
+     * finally goes for the left child of that node.
+     */
+    fun inOrderTraversal(visit: (it: BinaryTreeNode<T>?) -> Any) {
+        this.leftChild?.inOrderTraversal(visit)
+        visit(this)
+        this.rightChild?.inOrderTraversal(visit)
+    }
 
+    /**
+     * Pre-order traversal first visits the node itself and then visits the left and right nodes recursively.
+     */
+    fun preOrderTraversal(visit: (it: BinaryTreeNode<T>?) -> Any) {
+        visit(this)
+        this.leftChild?.preOrderTraversal(visit)
+        this.rightChild?.preOrderTraversal(visit)
+    }
+
+    /**
+     * Post-order traversal first visits the left and right children
+     * recursively. The node itself will only be visited after its children are already met.
+     */
+    fun postOrderTraversal(visit: (it: BinaryTreeNode<T>?) -> Any) {
+        this.leftChild?.postOrderTraversal(visit)
+        this.rightChild?.postOrderTraversal(visit)
+        visit(this)
+    }
 }

@@ -15,5 +15,12 @@ fun main() {
     nine.leftChild = eight
 
     val tree = seven
-    println(tree)
+    println("$tree\n")
+    println("\nIf we traverse the tree in-order, this is what we get:")
+    tree.inOrderTraversal { println(it?.value) }
+    println("\nIf we traverse the tree pre-order, this is what we get:")
+    tree.preOrderTraversal { println(it?.value) }
+    println("\nIf we traverse the tree post-order, this is what we get:")
+    tree.postOrderTraversal { println(it?.value) }
+
 }
