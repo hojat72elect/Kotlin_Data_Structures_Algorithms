@@ -1,26 +1,28 @@
-import tree.BinaryTreeNode
+import tree.BinarySearchTree
 
 fun main() {
-    val zero = BinaryTreeNode(0)
-    val one = BinaryTreeNode(1)
-    val five = BinaryTreeNode(5)
-    val seven = BinaryTreeNode(7)
-    val eight = BinaryTreeNode(8)
-    val nine = BinaryTreeNode(9)
+    val numberTree = BinarySearchTree<Int>()
 
-    seven.leftChild = one
-    one.leftChild = zero
-    one.rightChild = five
-    seven.rightChild = nine
-    nine.leftChild = eight
+    // Creating a BST:
+    numberTree.insert(12)
+        .insert(23)
+        .insert(1)
+        .insert(-1)
+        .insert(4)
+        .insert(3)
+        .insert(56)
+        .insert(12)
+        .insert(34)
+        .insert(32)
+        .insert(0)
 
-    val tree = seven
-    println("$tree\n")
-    println("\nIf we traverse the tree in-order, this is what we get:")
-    tree.inOrderTraversal { println(it?.value) }
-    println("\nIf we traverse the tree pre-order, this is what we get:")
-    tree.preOrderTraversal { println(it?.value) }
-    println("\nIf we traverse the tree post-order, this is what we get:")
-    tree.postOrderTraversal { println(it?.value) }
+    println(numberTree)
+
+    if (numberTree.contains(34)) {
+        println("the tree contains 34")
+    } else {
+        println("the tree doesn't contain 34")
+    }
+
 
 }

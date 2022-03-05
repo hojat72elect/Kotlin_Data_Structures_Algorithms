@@ -4,6 +4,9 @@ package tree
  * @author Hojat Ghasemi,
  * 2022-03-02
  * https://github.com/hojat72elect
+ *
+ * This class is the building block for all kinds of binary
+ * trees, including "binary tree" and "binary search tree".
  */
 class BinaryTreeNode<T>(val value: T) {
 
