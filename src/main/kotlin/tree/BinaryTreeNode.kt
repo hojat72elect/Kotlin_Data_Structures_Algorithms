@@ -8,10 +8,18 @@ package tree
  * This class is the building block for all kinds of binary
  * trees, including "binary tree" and "binary search tree".
  */
-class BinaryTreeNode<T>(val value: T) {
+class BinaryTreeNode<T>(var value: T) {
 
     var leftChild: BinaryTreeNode<T>? = null
     var rightChild: BinaryTreeNode<T>? = null
+
+    /**
+     * this "min" property will return the left-most sub-node
+     * of this node. I will only need this for performing removal
+     * operation on a binary search tree.
+     */
+    val min: BinaryTreeNode<T>
+        get() = leftChild?.min ?: this
 
     override fun toString() = diagram(this)
 
