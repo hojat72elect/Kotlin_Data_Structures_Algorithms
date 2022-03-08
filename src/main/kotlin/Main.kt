@@ -1,28 +1,13 @@
-import tree.BinarySearchTree
+import search._binarySearch
 
 fun main() {
-    val numberTree = BinarySearchTree<Int>()
 
-    // Creating a BST:
-    numberTree.insert(12)
-        .insert(23)
-        .insert(1)
-        .insert(-1)
-        .insert(4)
-        .insert(3)
-        .insert(56)
-        .insert(12)
-        .insert(34)
-        .insert(32)
-        .insert(0)
-
-    println(numberTree)
-
-    if (numberTree.contains(34)) {
-        println("the tree contains 34")
-    } else {
-        println("the tree doesn't contain 34")
-    }
-
-
+    val myNumbers = arrayListOf(16, 29, 37, 42, 83, 23, 75)
+    println("The numbers at first: $myNumbers")
+    println("The result of binary search on a non-incrementally-sorted array: ${myNumbers._binarySearch(3)}")
+    myNumbers.sort()
+    println("numbers after being incrementally sorted: $myNumbers")
+    println("the index of 2: ${myNumbers._binarySearch(2)}")
+    println("the index of 16: ${myNumbers._binarySearch(16)}")
+    println("the index of 23: ${myNumbers._binarySearch(23)}")
 }
