@@ -1,8 +1,8 @@
-import sort.mergeSort
+import sort.radixSort
 
 fun main() {
-    val mylist =
-        arrayListOf(9, 4, 10, -3, -7, 3, -8, 6, 5, -9, 734, 65, 97, -38, 4, 6, 5, 39, 284, -7, 65, 3, 9, 8, -45)
-    println(mylist)
-    println(mergeSort(mylist))
+    val myList = arrayListOf(52, 23, 27, 0, 25, 13, 41, 6, 5, 3, 14)
+    println("The original list: $myList")
+    radixSort(myList)
+    println("The sorted list: $myList")
 }
