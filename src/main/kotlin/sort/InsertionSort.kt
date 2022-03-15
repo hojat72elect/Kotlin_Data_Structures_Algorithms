@@ -4,6 +4,13 @@ package sort
  * @author Hojat Ghasemi,
  * 2022-03-13
  * https://github.com/hojat72elect
+ *
+ * Insertion sort:
+ * Time complexity is O(n^2)
+ * we have 2 for loops, the first one goes through all the elements of
+ * the input list (other than the first one) and the second for loop
+ * compares those unsorted elements with each element of the already
+ * sorted part of the list.
  */
 
 
