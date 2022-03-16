@@ -1,8 +1,8 @@
-import sort.radixSort
+import sort.heapSort
 
 fun main() {
-    val myList = arrayListOf(52, 23, 27, 0, 25, 13, 41, 6, 5, 3, 14)
+    val myList = arrayListOf(52, 23, 1, 6)
     println("The original list: $myList")
-    radixSort(myList)
+    heapSort(myList)
     println("The sorted list: $myList")
 }
