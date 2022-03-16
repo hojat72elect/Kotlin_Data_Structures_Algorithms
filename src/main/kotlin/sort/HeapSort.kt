@@ -4,6 +4,9 @@ package sort
  * @author Hojat Ghasemi,
  * 2022-03-15
  * https://github.com/hojat72elect
+ *
+ * The worst-case time complexity of HeapSort is O(n*log(n)). It's a comparison based sorting
+ * algorithm which uses the notion of heaps (complete binary trees).
  */
 
 fun <T : Comparable<T>> heapSort(inputList: MutableList<T>) {
@@ -35,7 +38,7 @@ fun <T : Comparable<T>> heapSort(inputList: MutableList<T>) {
  *
  * The "heapify()" function I've written here creates a Max-Heap (parent is more than or equal to its children).
  */
- fun <T : Comparable<T>> heapify(inputList: MutableList<T>, heapSize: Int, i: Int) {
+private fun <T : Comparable<T>> heapify(inputList: MutableList<T>, heapSize: Int, i: Int) {
     var indexLargest = i //initialize largest as root
     val indexLeftChild = 2 * i + 1 // left = 2*i + 1
     val indexRightChild = 2 * i + 2 // right = 2*i + 2
