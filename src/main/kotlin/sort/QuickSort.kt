@@ -5,9 +5,7 @@ package sort
  * 2022-03-16
  * https://github.com/hojat72elect
  *
- */
-
-/**
+ *
  * I love this naive implementation of quick sort. It's really efficient and extremely
  * easy to understand/implement. It's O(n*log(n)) in time complexity, but it's not too
  * efficient in memory consumption because of these reasons:
