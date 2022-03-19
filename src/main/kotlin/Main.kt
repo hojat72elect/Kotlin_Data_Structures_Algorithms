@@ -1,8 +1,8 @@
-import graph.AdjacencyList
+import graph.AdjacencyMatrix
 import graph.EdgeType
 
 fun main() {
-    val myGraph = AdjacencyList<String>()
+    val myGraph = AdjacencyMatrix<String>()
 
     // Defining all the vertices
     val singapore = myGraph.createVertex("Singapore")
@@ -30,5 +30,5 @@ fun main() {
 
     println(myGraph)
     println(myGraph.weight(singapore, tokyo))
-println(myGraph.edges(sanFrancisco))
+    println(myGraph.edges(sanFrancisco))
 }

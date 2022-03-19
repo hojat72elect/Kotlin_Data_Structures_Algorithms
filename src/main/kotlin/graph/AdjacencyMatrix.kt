@@ -5,32 +5,70 @@ package graph
  * 2022-03-19
  * https://github.com/hojat72elect
  */
-// Adjacency Matrix representation in Kotlin
-class AdjacencyMatrix(private val numVertices: Int) {
-    private val adjMatrix: Array<BooleanArray> = Array(numVertices) { BooleanArray(numVertices) }
 
-    // Add edges
-    fun addEdge(i: Int, j: Int) {
-        adjMatrix[i][j] = true
-        adjMatrix[j][i] = true
-    }
 
-    // Remove edges
-    fun removeEdge(i: Int, j: Int) {
-        adjMatrix[i][j] = false
-        adjMatrix[j][i] = false
-    }
+class AdjacencyMatrix<T> : Graph<T> {
 
-    // Print the matrix
-    override fun toString(): String {
-        val s = StringBuilder()
-        for (i in 0 until numVertices) {
-            s.append("$i: ")
-            for (j in adjMatrix[i]) {
-                s.append((if (j) 1 else 0).toString() + " ")
-            }
-            s.append("\n")
+    private val vertices = arrayListOf<Vertex<T>>()
+    private val weights = arrayListOf<ArrayList<Double?>>()
+
+    override fun createVertex(data: T): Vertex<T> {
+
+        // creating a vertex
+        val vertex = Vertex(vertices.count(), data)
+        vertices.add(vertex)
+
+        // add a new row and a new column of nulls for this new
+        // vertex.
+        weights.forEach {
+            it.add(null)
         }
-        return s.toString()
+        val row = ArrayList<Double?>(vertices.count())
+        repeat(vertices.count()) {
+            row.add(null)
+        }
+        weights.add(row)
+        return vertex
     }
+
+    override fun addDirectedEdge(source: Vertex<T>, destination: Vertex<T>, weight: Double?) {
+        weights[source.index][destination.index] = weight
+    }
+
+    override fun edges(source: Vertex<T>): ArrayList<Edge<T>> {
+        val edges = arrayListOf<Edge<T>>()
+        (0 until weights.size).forEach { column ->
+            val weight = weights[source.index][column]
+            if (weight != null) {
+                edges.add(Edge(source, vertices[column], weight))
+            }
+        }
+        return edges
+    }
+
+    override fun weight(source: Vertex<T>, destination: Vertex<T>): Double? {
+        return weights[source.index][destination.index]
+    }
+
+    override fun toString(): String {
+        val verticesDescription = vertices
+            .joinToString(separator = "\n") {
+                "${it.index}: ${it.data}"
+            }
+        val grid = weights.map { row ->
+            buildString {
+                (0 until weights.size).forEach { columnIndex ->
+                    val value = row[columnIndex]
+                    if (value != null) {
+                        append("$value\t")
+                    } else {
+                        append("ø\t\t")
+                    }
+                }
+            }
+        }
+        val edgesDescription = grid.joinToString("\n")
+        return "$verticesDescription\n\n$edgesDescription"
+    }
+
 }
