@@ -1,5 +1,8 @@
 package graph
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 /**
  * @author Hojat Ghasemi,
  * 2022-03-18
@@ -52,6 +55,31 @@ class AdjacencyList<T> : Graph<T> {
                 append("${vertex.data} ---> [ $edgeString ]\n")
             }
         }
+    }
+
+    /**
+     * breadth first search for a graph that was implemented via an
+     * adjacency list.
+     */
+    fun breadthFirstSearch(source: Vertex<T>): ArrayList<Vertex<T>> {
+        val queue = LinkedList<Vertex<T>>()
+        val enqueued = ArrayList<Vertex<T>>()
+        val visited = ArrayList<Vertex<T>>()
+
+        queue.add(source)
+        enqueued.add(source)
+        while (true) {
+            val vertex = queue.poll() ?: break
+            visited.add(vertex)
+            val neighborEdges = edges(vertex)
+            neighborEdges.forEach {
+                if (!enqueued.contains(it.destination)) {
+                    queue.add(it.destination)
+                    enqueued.add(it.destination)
+                }
+            }
+        }
+        return visited
     }
 
 }

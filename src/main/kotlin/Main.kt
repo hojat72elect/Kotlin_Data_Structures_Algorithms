@@ -1,8 +1,8 @@
-import graph.AdjacencyMatrix
+import graph.AdjacencyList
 import graph.EdgeType
 
 fun main() {
-    val myGraph = AdjacencyMatrix<String>()
+    val myGraph = AdjacencyList<String>()
 
     // Defining all the vertices
     val singapore = myGraph.createVertex("Singapore")
@@ -29,6 +29,11 @@ fun main() {
     myGraph.add(EdgeType.UNDIRECTED, austinTexas, sanFrancisco, 297.0)
 
     println(myGraph)
-    println(myGraph.weight(singapore, tokyo))
-    println(myGraph.edges(sanFrancisco))
+
+    val visitedVerticesBFS = myGraph.breadthFirstSearch(seattle)
+    visitedVerticesBFS.forEach {
+        println(it.data)
+    }
+
+
 }
