@@ -41,8 +41,6 @@ interface Graph<T> {
      */
     fun weight(source: Vertex<T>, destination: Vertex<T>): Double?
 
-
-
     /**
      * breadth first search for a graph that was implemented via an
      * adjacency list.
@@ -68,6 +66,56 @@ interface Graph<T> {
         return visited
     }
 
+    fun depthFirstSearch(source: Vertex<T>): ArrayList<Vertex<T>> {
+
+        // our path through the graph.
+        val stack = Stack<Vertex<T>>()
+        // visited vertices in the order they were visited.
+        val visited = arrayListOf<Vertex<T>>()
+        // Remembers which vertices were already pushed so that you don’t visit
+        // the same vertex twice. It's a MutableSet to ensure fast O(1) lookup.
+        val pushed = mutableSetOf<Vertex<T>>()
+
+        // The starting point of our algorithm.
+        stack.push(source)
+        pushed.add(source)
+        visited.add(source)
+
+        outer@ while (true) {
+            if (stack.isEmpty()) break
+
+            val vertex =
+                stack.peek()!! // in here we just peek (we continue checking the top of the stack for a vertex until the stack is empty).
+            val neighbors = edges(vertex) // all the neighboring edges for the current vertex.
+
+            // There are no neighboring edges, pop the stack and go for next vertex.
+            if (neighbors.isEmpty()) {
+                stack.pop()
+                continue
+            }
+
+            /*
+             * Check all the neighbors of the current vertex, the first neighbor that isn't already pushed in, will be pushed into our stack and also visited. Then we go to the outer loop to check out the newly pushed neighbor.
+             */
+
+            for (i in 0 until neighbors.size) {
+                val destination = neighbors[i].destination
+                if (destination !in pushed) {
+                    // the vertex is not already pushed in our stacks.
+                    stack.push(destination)
+                    pushed.add(destination)
+                    visited.add(destination)
+                    continue@outer
+                }
+            }
+            // If we get to this point, it means that the current vertex doesn't have any unvisited neighbors, so we're in a dead-end  and have to back track by popping the stack.
+            stack.pop()
+        }
+
+
+
+        return visited
+    }
 }
 
 enum class EdgeType {

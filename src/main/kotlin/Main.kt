@@ -30,8 +30,8 @@ fun main() {
 
     println(myGraph)
 
-    val visitedVerticesBFS = myGraph.breadthFirstSearch(seattle)
-    visitedVerticesBFS.forEach {
+    val visitedVerticesDFS = myGraph.depthFirstSearch(seattle)
+    visitedVerticesDFS.forEach {
         println(it.data)
     }
 
