@@ -40,6 +40,34 @@ interface Graph<T> {
      * Returns the weight of the unique edge that starts from "source" and ends at "destination" as a Double? value.
      */
     fun weight(source: Vertex<T>, destination: Vertex<T>): Double?
+
+
+
+    /**
+     * breadth first search for a graph that was implemented via an
+     * adjacency list.
+     */
+    fun breadthFirstSearch(source: Vertex<T>): ArrayList<Vertex<T>> {
+        val queue = LinkedList<Vertex<T>>()
+        val enqueued = ArrayList<Vertex<T>>()
+        val visited = ArrayList<Vertex<T>>()
+
+        queue.add(source)
+        enqueued.add(source)
+        while (true) {
+            val vertex = queue.poll() ?: break
+            visited.add(vertex)
+            val neighborEdges = edges(vertex)
+            neighborEdges.forEach {
+                if (!enqueued.contains(it.destination)) {
+                    queue.add(it.destination)
+                    enqueued.add(it.destination)
+                }
+            }
+        }
+        return visited
+    }
+
 }
 
 enum class EdgeType {
