@@ -1,6 +1,6 @@
 package scheduling;
 
-import devutils.entities.NewProcessDetails;
+import devutils.entities.ProcessDetails;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,10 +13,10 @@ import java.util.Queue;
  * <a href="https://www.scaler.com/topics/round-robin-scheduling-in-os/">here</a>
  */
 public class RRScheduling {
-    private List<NewProcessDetails> processes;
+    private List<ProcessDetails> processes;
     private int quantumTime;
 
-    RRScheduling(final List<NewProcessDetails> processes, int quantumTime) {
+    RRScheduling(final List<ProcessDetails> processes, int quantumTime) {
         this.processes = processes;
         this.quantumTime = quantumTime;
     }

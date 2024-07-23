@@ -1,6 +1,6 @@
 package scheduling;
 
-import devutils.entities.NewProcessDetails;
+import devutils.entities.ProcessDetails;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * <a href="https://www.guru99.com/shortest-job-first-sjf-scheduling.html">here</a>
  */
 public class SJFScheduling {
-    protected ArrayList<NewProcessDetails> processes;
+    protected ArrayList<ProcessDetails> processes;
     protected ArrayList<String> schedule;
 
     /**
@@ -19,7 +19,7 @@ public class SJFScheduling {
      * @param processes a list of processes the user wants to schedule it also sorts the processes
      * based on the time of their arrival.
      */
-    SJFScheduling(final ArrayList<NewProcessDetails> processes) {
+    SJFScheduling(final ArrayList<ProcessDetails> processes) {
         this.processes = processes;
         schedule = new ArrayList<>();
         sortByArrivalTime();
@@ -29,7 +29,7 @@ public class SJFScheduling {
         int size = processes.size();
         int i;
         int j;
-        NewProcessDetails temp;
+        ProcessDetails temp;
         for (i = 0; i < size; i++) {
             for (j = i + 1; j < size - 1; j++) {
                 if (processes.get(j).getArrivalTime() > processes.get(j + 1).getArrivalTime()) {
@@ -45,7 +45,7 @@ public class SJFScheduling {
      * this functions returns the order of the executions
      */
     public void scheduleProcesses() {
-        ArrayList<NewProcessDetails> ready = new ArrayList<>();
+        ArrayList<ProcessDetails> ready = new ArrayList<>();
 
         int size = processes.size();
         int runtime;
@@ -53,7 +53,7 @@ public class SJFScheduling {
         int executed = 0;
         int j;
         int k = 0;
-        NewProcessDetails running;
+        ProcessDetails running;
 
         if (size == 0) {
             return;
@@ -89,7 +89,7 @@ public class SJFScheduling {
      * @return returns the process' with the shortest burst time OR NULL if there are no ready
      * processes.
      */
-    private NewProcessDetails findShortestJob(ArrayList<NewProcessDetails> readyProcesses) {
+    private ProcessDetails findShortestJob(ArrayList<ProcessDetails> readyProcesses) {
         if (readyProcesses.isEmpty()) {
             return null;
         }

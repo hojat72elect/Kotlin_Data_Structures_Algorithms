@@ -1,6 +1,6 @@
 package scheduling;
 
-import devutils.entities.NewProcessDetails;
+import devutils.entities.ProcessDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,14 @@ import java.util.List;
  * More information you can find here -> https://en.wikipedia.org/wiki/Shortest_remaining_time
  */
 public class SRTFScheduling {
-    protected List<NewProcessDetails> processes;
+    protected List<ProcessDetails> processes;
     protected List<String> ready;
 
     /**
      * Constructor
      * @param processes ArrayList of ProcessDetails given as input
      */
-    public SRTFScheduling(ArrayList<NewProcessDetails> processes) {
+    public SRTFScheduling(ArrayList<ProcessDetails> processes) {
         this.processes = new ArrayList<>();
         ready = new ArrayList<>();
         this.processes = processes;
