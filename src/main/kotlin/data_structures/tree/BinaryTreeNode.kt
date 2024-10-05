@@ -1,4 +1,4 @@
-package tree
+package data_structures.tree
 
 /**
  * @author Hojat Ghasemi,

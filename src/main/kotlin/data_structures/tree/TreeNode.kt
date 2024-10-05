@@ -1,6 +1,6 @@
-package tree
+package data_structures.tree
 
-import queue.Queue
+import data_structures.queue.Queue
 
 
 /**

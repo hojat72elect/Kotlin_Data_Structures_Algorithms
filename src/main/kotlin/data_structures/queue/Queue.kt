@@ -1,4 +1,4 @@
-package queue
+package data_structures.queue
 
 /**
  * Created by Hojat Ghasemi on 2022-02-02.

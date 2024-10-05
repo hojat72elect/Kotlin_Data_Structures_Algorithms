@@ -1,4 +1,4 @@
-import linkedlist.LinkedList
+import data_structures.linkedlist.LinkedList
 
 /**
  * Created by Hojat Ghasemi on 2022-02-17.

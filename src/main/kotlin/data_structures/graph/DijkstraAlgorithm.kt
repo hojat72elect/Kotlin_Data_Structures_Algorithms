@@ -1,5 +1,5 @@
-import graph.AdjacencyList
-import graph.EdgeType
+import data_structures.graph.AdjacencyList
+import data_structures.graph.EdgeType
 
 /**
  * In here I have defined Graph as a data class, but I had previously defined Graph as an Interface. So, I think it's better I come back to this implementation later and try to change it in a way that it's possible to define a graph as an object (the class way).

@@ -1,5 +1,5 @@
-import graph.AdjacencyList
-import graph.EdgeType
+import data_structures.graph.AdjacencyList
+import data_structures.graph.EdgeType
 
 fun main() {
     val myGraph = AdjacencyList<String>()

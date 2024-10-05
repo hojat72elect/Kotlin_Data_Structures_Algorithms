@@ -1,4 +1,4 @@
-package trie
+package data_structures.trie
 
 /**
  * @author Hojat Ghasemi,

@@ -1,4 +1,4 @@
-package linkedlist
+package data_structures.linkedlist
 
 class LinkedList<T>() {
     private var head: Node<T>? = null

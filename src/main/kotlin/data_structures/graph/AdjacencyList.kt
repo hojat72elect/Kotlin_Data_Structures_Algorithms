@@ -1,4 +1,4 @@
-package graph
+package data_structures.graph
 
 /**
  * @author Hojat Ghasemi,
