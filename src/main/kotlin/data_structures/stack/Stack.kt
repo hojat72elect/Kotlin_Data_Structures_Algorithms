@@ -1,6 +1,6 @@
-package _stack
+package data_structures.stack
 
-class HojatStack<T> {
+class Stack<T> {
     private val storage = arrayListOf<T>()
 
     val isEmpty: Boolean
@@ -9,7 +9,7 @@ class HojatStack<T> {
     val size: Int
         get() = storage.size
 
-    fun push(element: T): HojatStack<T> {
+    fun push(element: T): Stack<T> {
         storage.add(element)
         return this
     }
@@ -36,6 +36,8 @@ class HojatStack<T> {
 
     // just tells you what you will get if you pop the stack.
     fun peek(): T? {
+        if (isEmpty) return null
+
         return storage[size - 1]
     }
 
