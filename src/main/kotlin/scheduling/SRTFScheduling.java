@@ -26,7 +26,6 @@ public class SRTFScheduling {
      * @param processes ArrayList of ProcessDetails given as input
      */
     public SRTFScheduling(ArrayList<ProcessDetails> processes) {
-        this.processes = new ArrayList<>();
         ready = new ArrayList<>();
         this.processes = processes;
     }
