@@ -1,4 +1,4 @@
-package scheduling;
+package algorithms.scheduling;
 
 import java.util.ArrayList;
 import java.util.Comparator;

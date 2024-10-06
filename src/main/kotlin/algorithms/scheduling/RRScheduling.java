@@ -1,6 +1,6 @@
-package scheduling;
+package algorithms.scheduling;
 
-import devutils.entities.ProcessDetails;
+import algorithms.entities.ProcessDetails;
 
 import java.util.Arrays;
 import java.util.LinkedList;

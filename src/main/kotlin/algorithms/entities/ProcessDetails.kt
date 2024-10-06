@@ -1,4 +1,4 @@
-package devutils.entities
+package algorithms.entities
 
 data class ProcessDetails(
     val processId: String,

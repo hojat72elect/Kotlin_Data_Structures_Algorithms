@@ -1,4 +1,4 @@
-package audiofilters
+package algorithms.audiofilters
 
 /**
  * N-Order IIR Filter Assumes inputs are normalized to [-1, 1]

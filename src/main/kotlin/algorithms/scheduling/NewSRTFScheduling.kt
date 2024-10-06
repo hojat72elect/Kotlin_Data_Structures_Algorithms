@@ -1,6 +1,6 @@
-package scheduling
+package algorithms.scheduling
 
-import devutils.entities.ProcessDetails
+import algorithms.entities.ProcessDetails
 
 /**
  * Implementation of Shortest Remaining Time First Scheduling Algorithm.
