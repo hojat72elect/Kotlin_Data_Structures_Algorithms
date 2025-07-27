@@ -1,6 +1,6 @@
 package leetcode_problems
 
-class Solution {
+class Solution1 {
     fun twoSum(nums: IntArray, target: Int): IntArray {
         nums.forEachIndexed { index, num ->
             var counter = index + 1
@@ -16,7 +16,7 @@ class Solution {
 }
 
 fun main() {
-    val solution = Solution()
+    val solution = Solution1()
 
     // example 1
     val answer1 = solution.twoSum(intArrayOf(2, 7, 11, 15), 9)
