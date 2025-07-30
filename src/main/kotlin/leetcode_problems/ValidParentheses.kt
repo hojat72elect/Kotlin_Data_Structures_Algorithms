@@ -26,7 +26,7 @@ class Solution4 {
                 secondaryStack.push(itemFromPrimaryStack)
             } else {
                 // this is a closing parenthesis
-                if (secondaryStack.isEmpty)
+                if (secondaryStack.isEmpty())
                     return false
                 val itemFromSecondaryStack = secondaryStack.pop()
                 when (itemFromPrimaryStack) {
